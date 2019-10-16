@@ -120,12 +120,7 @@ if ! shopt -oq posix; then
 fi
 
 
-# for neco compiler
-# export PATH=$PATH:/home/justin/.local/bin
-# export PYTHONPATH=$PYTHONPATH:/home/justin/.local/lib/python2.7/site-packages
-# export NECO_INCLUDE=/home/justin/.local/lib/python2.7/site-packages/neco/ctypes:/home/justin/.local/lib/python2.7/site-packages/neco/backends/python:/home/justin/.local/lib/python2.7/site-packages
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NECO_INCLUDE
 export EDITOR=vim
 source ~/.bin/tmuxinator.bash
 alias tmux="TERM=screen-256color-bce tmux"
-alias config='/usr/bin/git --git-dir=/home/justin/.cfg/ --work-tree=/home/justin'
+alias dot='/usr/bin/git --git-dir=/home/justin/.cfg/ --work-tree=/home/justin'
