@@ -124,3 +124,5 @@ export EDITOR=vim
 source ~/.bin/tmuxinator.bash
 alias tmux="TERM=screen-256color-bce tmux"
 alias dot='/usr/bin/git --git-dir=/home/justin/.cfg/ --work-tree=/home/justin'
+shopt -s autocd # allows automatic cd by only typing the directory name.
+HISTSIZE= HISTFILESIZE= # infinite bash history
