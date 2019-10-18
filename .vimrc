@@ -14,8 +14,6 @@ if exists('*minpac#init')
     call minpac#add('scrooloose/nerdcommenter')
     " code folding
     call minpac#add('pseewald/vim-anyfold')
-    "dwm tiling window manager
-    call minpac#add('spolu/dwm.vim')
     ":colorscheme iceberg
     call minpac#add('cocopon/iceberg.vim')
     ":colorscheme deus 
