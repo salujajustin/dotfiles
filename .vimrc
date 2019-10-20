@@ -1,3 +1,14 @@
+"        __________   ____________
+"       |  ________| |____    ____| 
+"       |  |  __________  |  |                      
+"       |  | |   _______| |  |  File: 	     .vimrc
+"       |  | |  |_______  |  |  Desc:  	     Personal Vim configuration
+"       |  | |_______   | |  |             
+"       |  |  _______|  | |  |  Maintainer:  <Justin Saluja>           
+"       |  | |__________| |  |  Email:       <salujajustin@gmail.com>            
+"   ____|  |____   _______|  |  Github:      <salujajustin>                               
+"  |____________| |__________|
+
 set packpath^=~/.vim
 packadd minpac
 
