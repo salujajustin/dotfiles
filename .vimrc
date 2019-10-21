@@ -32,8 +32,6 @@ command! PackStatus call minpac#status()
 " <leader> as a precursor to user defined commands
 let mapleader = ','
 
-set t_ut=
-
 " Basics
 set nocompatible 
 syntax on 
@@ -43,6 +41,12 @@ set number relativenumber
 syntax enable 
 set background=dark
 colorscheme deus
+
+" Tab remap to 4 spaces 
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " Indent levels in code settings
 let g:indent_guides_auto_colors = 0
@@ -120,8 +124,3 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:completor_auto_trigger = 0
 inoremap <expr> <Tab> Tab_Or_Complete()
 
-" Tab remap to 4 spaces 
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
