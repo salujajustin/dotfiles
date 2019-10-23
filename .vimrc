@@ -2,12 +2,20 @@
 "       |  ________| |____    ____| 
 "       |  |  __________  |  |                      
 "       |  | |   _______| |  |  File: 	     .vimrc
-"       |  | |  |_______  |  |  Desc:  	     Personal Vim configuration
+"       |  | |  |_______  |  |  Desc:  	     Personal Vim 8 configuration
 "       |  | |_______   | |  |             
 "       |  |  _______|  | |  |  Maintainer:  <Justin Saluja>           
 "       |  | |__________| |  |  Email:       <salujajustin@gmail.com>            
 "   ____|  |____   _______|  |  Github:      <salujajustin>                               
 "  |____________| |__________|
+"
+"
+"  '''sh
+"  mkdir -p ~/.vim/pack/minpac/opt
+"  mkdir -p ~/.vim/tmp
+"  git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+"  '''
+"
 
 set packpath^=~/.vim
 packadd minpac
@@ -52,6 +60,10 @@ set number relativenumber
 syntax enable 
 set background=dark
 colorscheme deus
+
+" Backup dir
+set backupdir=~/.vim/tmp//,.  " backup files
+set directory=~/.vim/tmp//,.  " swap files
 
 " Tab remap to 4 spaces 
 filetype plugin indent on
