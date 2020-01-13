@@ -1,75 +1,111 @@
 "        __________   ____________
-"       |  ________| |____    ____| 
-"       |  |  __________  |  |                      
-"       |  | |   _______| |  |  File: 	     .vimrc
-"       |  | |  |_______  |  |  Desc:  	     Personal Vim 8 configuration
-"       |  | |_______   | |  |             
-"       |  |  _______|  | |  |  Maintainer:  <Justin Saluja>           
-"       |  | |__________| |  |  Email:       <salujajustin@gmail.com>            
-"   ____|  |____   _______|  |  Github:      <salujajustin>                               
+"       |  ________| |____    ____|
+"       |  |  __________  |  |
+"       |  | |   _______| |  |  File:        .vimrc
+"       |  | |  |_______  |  |  Desc:         Personal Vim 8 configuration
+"       |  | |_______   | |  |
+"       |  |  _______|  | |  |  Maintainer:  <Justin Saluja>
+"       |  | |__________| |  |  Email:       <salujajustin@gmail.com>
+"   ____|  |____   _______|  |  Github:      <salujajustin>
 "  |____________| |__________|
+
+"                               Prerequisites   
 "
-"
+"  Install the minpac package manager:
 "  '''sh
 "  mkdir -p ~/.vim/pack/minpac/opt
 "  mkdir -p ~/.vim/tmp
 "  git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 "  '''
-"
 
 set packpath^=~/.vim
 packadd minpac
 
 if exists('*minpac#init')
-    " minpac is loaded
-    call minpac#init({'verbose': 3})
+    call minpac#init({'verbose': 3})  " minpac is loaded
     call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-    " delete, change, add surroundings: ()[]{}<>...
-    call minpac#add('tpope/vim-surround')
-    " autocomplete 
-    call minpac#add('maralla/completor.vim')
-    " commenting code
-    call minpac#add('scrooloose/nerdcommenter')
-    " code folding
-    call minpac#add('pseewald/vim-anyfold')
-    ":colorscheme iceberg
-    call minpac#add('cocopon/iceberg.vim')
-    ":colorscheme deus 
-    call minpac#add('ajmwagar/vim-deus')
-    ":colorscheme minimalist
-    call minpac#add('dikiaap/minimalist')
-
-    call minpac#add('EinfachToll/DidYouMean')
+    " Basic plugins 
+    call minpac#add('tpope/vim-surround')  " delete, change, add surroundings: ()[]{}<>...
+    call minpac#add('scrooloose/nerdcommenter')  " commenting code
+    call minpac#add('pseewald/vim-anyfold')  " code folding  
+    call minpac#add('EinfachToll/DidYouMean')  " stupidity checker
+    " Colorschemes  
+    call minpac#add('ajmwagar/vim-deus')  " :colorscheme deus
+    call minpac#add('cocopon/iceberg.vim')  " :colorscheme iceberg
+    call minpac#add('dikiaap/minimalist')  " :colorscheme minimalist
+    " LaTeX document support
+    call minpac#add('lervag/vimtex')  " syntax, compilation, parsing etc.   
+    call minpac#add('sirver/ultisnips')  " snippet manager
+    call minpac#add('KeitaNakamura/tex-conceal.vim')  " latex text concealer
+    call minpac#add('907th/vim-auto-save')  " automatically save changes to disk  
  endif
 
-" minpac utility commands 
+" minpac utility commands : call when adding/removing plugins 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 command! PackStatus call minpac#status()
 
-" <leader> as a precursor to user defined commands
+" <leader> & <localleader> as a precursor to user defined commands
 let mapleader = ','
+let maplocalleader = " "
 
 " Basics
 set nocompatible 
-syntax on 
-filetype plugin indent on 
 set encoding=utf-8
 set number relativenumber 
-syntax enable 
 set background=dark
+syntax enable 
+syntax on 
 colorscheme deus
-
-" Backup dir
-set backupdir=~/.vim/tmp//,.  " backup files
-set directory=~/.vim/tmp//,.  " swap files
 
 " Tab remap to 4 spaces 
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Backup dir
+set backupdir=~/.vim/tmp//,.  " backup files
+set directory=~/.vim/tmp//,.  " swap files
+
+" Allow copy to System Clipboard 
+vmap '' :w !pbcopy<CR><CR>
+
+" For seeing unused whitespace and end-of-line
+set list 
+set listchars=space:⋅,eol:¬
+nnoremap <leader>. :set list!<CR>
+
+" Disable automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" LaTeX Settings "
+"   ultisnips settings
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+"   vimtex settings 
+let g:tex_flavor='latex'
+let g:vimtex_view_method='skim'
+let g:vimtex_quickfix_mode=0
+"   tex-conceal settings
+set conceallevel=1
+let g:tex_conceal='abdmg'
+"   spell checking 
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+"   auto-save options 
+let g:auto_save_silent = 1  " do not display auto-save notification
+nnoremap <localleader>w :AutoSaveToggle<CR>
+
+" Code Folding Options
+autocmd Filetype * AnyFoldActivate  " Activate for all filetypes
+    " set foldlevel=0  " Close all folds
+    set foldlevel=99 " Open all folds
+
+" NerdCommenter options
+let NERDSpaceDelims = 1
 
 " Indent levels in code settings
 let g:indent_guides_auto_colors = 0
@@ -79,23 +115,10 @@ set ts=4 sw=4 et
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-" For seeing unused whitespace:
-" set list 
-" set listchars=space:⋅
-" Disable automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Key mappings
-inoremap jk <Esc>
-
-" Code Folding Options
-"   :h anyfold
-"   :h fold-commands
-autocmd Filetype * AnyFoldActivate               " Activate for all filetypes
-    " set foldlevel=0  " Close all folds
-    set foldlevel=99 " Open all folds
-
-" Enclosing autocompletion
+" Insert Mode key mappings
+"   exit insert mode
+inoremap jk <Esc>   
+"   enclosing autocompletion
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
@@ -105,45 +128,6 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 inoremap <leader>l <right>
 
-" Replace all words aliased to S, with confirmation
-nnoremap S  :%s//gc<Left><Left><Left>
-" nnoremap S  :%s/\<\>//g<Left><Left><Left><Left><Left>
-
-" Replace all whole words aliased to 
-" C/C++ autocompletion: requires a sudo apt install clang
-let g:completor_clang_binary = '/usr/bin/clang-3.8'
-" see github for passing additional clang arguments such as include libraries
-
-let NERDSpaceDelims = 1
-
-
-
-" Use TAB to complete when typing words, else inserts TABs as usual.  Uses
-" dictionary, source files, and completor to find matching words to complete.
-
-" Note: usual completion is on <C-n> but more trouble to press all the time.
-" Never type the same word twice and maybe learn a new spellings!
-" Use the Linux dictionary when spelling is in doubt.
-function! Tab_Or_Complete() abort
-  " If completor is already open the `tab` cycles through suggested completions.
-  if pumvisible()
-    return "\<C-N>"
-  " If completor is not open and we are in the middle of typing a word then
-  " `tab` opens completor menu.
-  elseif col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-R>=completor#do('complete')\<CR>"
-  else
-    " If we aren't typing a word and we press `tab` simply do the normal `tab`
-    " action.
-    return "\<Tab>"
-  endif
-endfunction
-
-" Use `tab` key to select completions.  Default is arrow keys.
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Use tab to trigger auto completion.  Default suggests completions as you type.
-let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> Tab_Or_Complete()
-
+" Normal Mode key mappings
+"   replace all words aliased to S, with confirmation
+nnoremap S  :%s//gc<Left><Left><Left>  
