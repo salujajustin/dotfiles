@@ -27,7 +27,6 @@ if exists('*minpac#init')
     " Basic plugins 
     call minpac#add('tpope/vim-surround')  " delete, change, add surroundings: ()[]{}<>...
     call minpac#add('scrooloose/nerdcommenter')  " commenting code
-    call minpac#add('pseewald/vim-anyfold')  " code folding  
     call minpac#add('EinfachToll/DidYouMean')  " stupidity checker
     " Colorschemes  
     call minpac#add('ajmwagar/vim-deus')  " :colorscheme deus
@@ -98,11 +97,6 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "   auto-save options 
 let g:auto_save_silent = 1  " do not display auto-save notification
 nnoremap <localleader>w :AutoSaveToggle<CR>
-
-" Code Folding Options
-autocmd Filetype * AnyFoldActivate  " Activate for all filetypes
-    " set foldlevel=0  " Close all folds
-    set foldlevel=99 " Open all folds
 
 " NerdCommenter options
 let NERDSpaceDelims = 1
