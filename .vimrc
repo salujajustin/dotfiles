@@ -25,7 +25,7 @@ if exists('*minpac#init')
     call minpac#init({'verbose': 3})  " minpac is loaded
     call minpac#add('k-takata/minpac', {'type': 'opt'})
     " Basic plugins 
-    call minpac#add('tpope/vim-surround')  " delete, change, add surroundings: ()[]{}<>...
+    call minpac#add('machakann/vim-sandwich')  " delete, change, add surroundings: ()[]{}<>...
     call minpac#add('scrooloose/nerdcommenter')  " commenting code
     call minpac#add('EinfachToll/DidYouMean')  " stupidity checker
     " Colorschemes  
