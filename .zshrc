@@ -1,4 +1,14 @@
-# If you come from bash you might have to change your $PATH.
+#        __________   ____________                                                                                                                                    
+#       |  ________| |____    ____|                                                                                                                                   
+#       |  |  __________  |  |                                                                                                                                        
+#       |  | |   _______| |  |  File:        .zshrc                                                                                                                   
+#       |  | |  |_______  |  |  Desc:         Personal zsh configuration                                                                                            
+#       |  | |_______   | |  |                                                                                                                                        
+#       |  |  _______|  | |  |  Maintainer:  <Justin Saluja>                                                                                                          
+#       |  | |__________| |  |  Email:       <salujajustin@gmail.com>                                                                                                 
+#   ____|  |____   _______|  |  Github:      <salujajustin>                                                                                                           
+#  |____________| |__________|       
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
