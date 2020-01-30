@@ -37,6 +37,9 @@ if exists('*minpac#init')
     call minpac#add('sirver/ultisnips')  " snippet manager
     call minpac#add('KeitaNakamura/tex-conceal.vim')  " latex text concealer
     call minpac#add('907th/vim-auto-save')  " automatically save changes to disk  
+    " Code support 
+    call minpac#add('jiangmiao/auto-pairs')  " insert or delete brackets, parens, quotes in pair 
+    call minpac#add('neoclide/coc.nvim', {'branch': 'release'})  " intellisense engine  
  endif
 
 " minpac utility commands : call when adding/removing plugins 
@@ -71,7 +74,6 @@ set directory=~/.vim/tmp//,.  " swap files
 vmap '' :w !pbcopy<CR><CR>
 
 " For seeing unused whitespace and end-of-line
-set list 
 set listchars=space:⋅,eol:¬
 nnoremap <leader>. :set list!<CR>
 
@@ -112,16 +114,20 @@ let g:indent_guides_guide_size = 1
 " Insert Mode key mappings
 "   exit insert mode
 inoremap jk <Esc>   
-"   enclosing autocompletion
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-inoremap <leader>l <right>
 
 " Normal Mode key mappings
 "   replace all words aliased to S, with confirmation
 nnoremap S  :%s//gc<Left><Left><Left>  
+
+" Cut & Copy visual lines to system clipboard
+" echo has('clipboard') ==> if 0 install vim-gtk3
+set clipboard=unnamedplus  " ctrl-c & ctrl-v clipboard
+" Paste in vim cli from unamedplus register <+>
+cnoremap <C-v> <C-r>+/
+
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
