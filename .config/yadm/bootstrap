@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Tell the shell to exit if a command exists with non-zero status
+set -e 
+
+## Functions
+
+# print text with surrounding newlines 
+# Usage: pretty_print "test"
+pretty_print() {
+    printf "\n%b\n" "$1"
+}
+
+# minpac installation
+# Usage install_minpac
+install_minpac() {
+    pretty_print "Installing the minpac package manager..."
+    $HOME/scripts/install/minpac
+}
+
+# main function 
+function main() {
+    install_minpac
+}
+main "$@"
