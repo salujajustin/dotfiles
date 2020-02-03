@@ -108,6 +108,12 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 let g:auto_save_silent = 1  " do not display auto-save notification
 nnoremap <localleader>w :AutoSaveToggle<CR>
 
+" Coc options:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " NerdCommenter options
 let NERDSpaceDelims = 1
 
