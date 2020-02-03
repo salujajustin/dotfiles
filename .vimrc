@@ -47,6 +47,13 @@ command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 command! PackStatus call minpac#status()
 
+" Coc extentions
+" :CocInstall coc-vimtex
+" :CocInstall coc-snippets
+
+" store system kernel in a variable
+let OS=substitute(system('uname -s'), "\n","","")
+
 " <leader> & <localleader> as a precursor to user defined commands
 let mapleader = ','
 let maplocalleader = " "
@@ -70,9 +77,6 @@ set expandtab
 set backupdir=~/.vim/tmp//,.  " backup files
 set directory=~/.vim/tmp//,.  " swap files
 
-" Allow copy to System Clipboard 
-vmap '' :w !pbcopy<CR><CR>
-
 " For seeing unused whitespace and end-of-line
 set listchars=space:⋅,eol:¬
 nnoremap <leader>. :set list!<CR>
@@ -87,8 +91,12 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 "   vimtex settings 
 let g:tex_flavor='latex'
-let g:vimtex_view_method='skim'
 let g:vimtex_quickfix_mode=0
+if (OS == "Darwin")
+    let g:vimtex_view_method='skim'
+else 
+    let g:vimtex_view_method='zathura'
+endif
 "   tex-conceal settings
 set conceallevel=1
 let g:tex_conceal='abdmg'
@@ -121,9 +129,12 @@ nnoremap S  :%s//gc<Left><Left><Left>
 
 " Cut & Copy visual lines to system clipboard
 " echo has('clipboard') ==> if 0 install vim-gtk3
-set clipboard=unnamedplus  " ctrl-c & ctrl-v clipboard
-" Paste in vim cli from unamedplus register <+>
-cnoremap <C-v> <C-r>+/
+if (OS == "Darwin")
+    vmap '' :w !pbcopy<CR><CR>
+else 
+    set clipboard=unnamedplus  " ctrl-c & ctrl-v clipboard
+    cnoremap <C-v> <C-r>+/  
+endif
 
 " vim hardcodes background color erase even if the terminfo file does
 " not contain bce (not to mention that libvte based terminals
