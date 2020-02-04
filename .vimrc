@@ -17,7 +17,6 @@
 "  mkdir -p ~/.vim/tmp
 "  git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 "  '''
-
 set packpath^=~/.vim
 packadd minpac
 
@@ -39,7 +38,7 @@ if exists('*minpac#init')
     call minpac#add('907th/vim-auto-save')  " automatically save changes to disk  
     " Code support 
     call minpac#add('jiangmiao/auto-pairs')  " insert or delete brackets, parens, quotes in pair 
-    call minpac#add('neoclide/coc.nvim', {'branch': 'release'})  " intellisense engine  
+    " call minpac#add('neoclide/coc.nvim', {'branch': 'release'})  " intellisense engine  
  endif
 
 " minpac utility commands : call when adding/removing plugins 
@@ -92,6 +91,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 "   vimtex settings 
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
+let g:vimtex_view_forward_search_on_start=0
 if (OS == "Darwin")
     let g:vimtex_view_method='skim'
 else 
@@ -109,10 +109,10 @@ let g:auto_save_silent = 1  " do not display auto-save notification
 nnoremap <localleader>w :AutoSaveToggle<CR>
 
 " Coc options:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " NerdCommenter options
 let NERDSpaceDelims = 1
@@ -126,8 +126,10 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Insert Mode key mappings
-"   exit insert mode
+" -> exit insert mode
 inoremap jk <Esc>   
+" -> jump out of {}[]() etc.
+inoremap <localleader>l <ESC>la
 
 " Normal Mode key mappings
 "   replace all words aliased to S, with confirmation
