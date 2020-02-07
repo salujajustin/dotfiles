@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+# Record standard output of the next command and pipe to system clipboard
+# Requires xclip to be installed
+# Usage: record <cmds> 
+
+"$@" | tee >(xclip -selection clipboard)
