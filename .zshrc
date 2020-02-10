@@ -46,3 +46,12 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
+
+# Kitty configuration
+autoload -Uz compinit
+compinit
+kitty + complete setup zsh | source /dev/stdin  # Completion for kitty
+alias kittyconf="vim ~/.config/kitty/kitty.conf"
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
+
