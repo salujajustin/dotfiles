@@ -83,8 +83,12 @@ nnoremap <leader>. :set list!<CR>
 " Disable automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" File extension syntax highlighting
+autocmd BufNewFile,BufRead *.rasi set syntax=css
+
 " LaTeX Settings "
 "   ultisnips settings
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/snippets']
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
@@ -129,7 +133,7 @@ let g:indent_guides_guide_size = 1
 " -> exit insert mode
 inoremap jk <Esc>   
 " -> jump out of {}[]() etc.
-inoremap <localleader>l <ESC>la
+inoremap <leader>l <ESC>la
 
 " Normal Mode key mappings
 "   replace all words aliased to S, with confirmation
