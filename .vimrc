@@ -31,11 +31,15 @@ if exists('*minpac#init')
     call minpac#add('ajmwagar/vim-deus')  " :colorscheme deus
     call minpac#add('cocopon/iceberg.vim')  " :colorscheme iceberg
     call minpac#add('dikiaap/minimalist')  " :colorscheme minimalist
+    call minpac#add('dylanaraps/wal.vim')  " :colorscheme wal
     " LaTeX document support
     call minpac#add('lervag/vimtex')  " syntax, compilation, parsing etc.   
     call minpac#add('sirver/ultisnips')  " snippet manager
     call minpac#add('KeitaNakamura/tex-conceal.vim')  " latex text concealer
     call minpac#add('907th/vim-auto-save')  " automatically save changes to disk  
+    " Note-taking support
+    call minpac#add('junegunn/goyo.vim') " distraction free writing
+    call minpac#add('junegunn/limelight.vim') " focus opacity on current text
     " Code support 
     call minpac#add('jiangmiao/auto-pairs')  " insert or delete brackets, parens, quotes in pair 
     " call minpac#add('neoclide/coc.nvim', {'branch': 'release'})  " intellisense engine  

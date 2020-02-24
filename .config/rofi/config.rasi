@@ -51,7 +51,8 @@ matching: "fuzzy";
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
 /* theme: "/usr/share/rofi/themes/Arc-Dark.rasi"; */
-theme: "~/.config/rofi/themes/saluja.rasi";
+/* theme: "~/.config/rofi/themes/saluja.rasi"; */
+theme: "~/.cache/wal/colors-rofi-dark.rasi";
 /*	color-normal: "#510231, #FEE8DA, #510231, #FF974E, #510231";
   	color-urgent: "#510231, #FA6E43, #510231, #FA6E43, #FEE8DA";
   	color-active: "#510231, #FEE8DA, #510231, #FF974E, #510231";
@@ -86,12 +87,12 @@ combi-hide-mode-prefix: true;
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-    kb-mode-next: "Alt+L,Shift+Right";
-    kb-mode-previous: "Alt+H,Shift+Left";
+    kb-mode-next: "Alt+l,Shift+Right";
+    kb-mode-previous: "Alt+h,Shift+Left";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-    kb-row-up: "Alt+K,Up";
-    kb-row-down: "Alt+J,Down";
+    kb-row-up: "Alt+k,Up";
+    kb-row-down: "Alt+j,Down";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/
 /*	kb-page-next: "Page_Down";*/

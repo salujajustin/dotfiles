@@ -55,3 +55,5 @@ alias kittyconf="vim ~/.config/kitty/kitty.conf"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 
+# Import colorscheme from 'wal' asynchronously
+(cat ~/.cache/wal/sequences &)
