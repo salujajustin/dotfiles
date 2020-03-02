@@ -1,0 +1,4 @@
+#!/bin/sh
+# Install Cargo - the Rust package manager
+
+curl https://sh.rustup.rs -sSf | sh
