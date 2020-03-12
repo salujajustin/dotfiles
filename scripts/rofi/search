@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+# description: Search local files and folders with the locate command and the updatedb database
+# requirements: rofi, mlocate
+
+SCRIPTS=~/scripts
+CONFIG=~/.config
+CODE=~/code/python
+
+locate $CODE $CONFIG $SCRIPTS | rofi -threads 0 -width 90 -dmenu -i -p "search" | xargs -r kitty -1 -e vim
