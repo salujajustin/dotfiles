@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+# Cargo package list 
+CARGO_PACKAGES=(
+broot
+procs
+lsd
+kondo
+)

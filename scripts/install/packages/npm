@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+# npm package list 
+NPM_PACKAGES=(
+browser-sync
+fx
+how-2
+)
