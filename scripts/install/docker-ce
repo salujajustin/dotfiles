@@ -6,6 +6,9 @@
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 
 
+# Exit immediately if a command exits with a non-zero status
+set -e
+
 # Must be run as root
 if [[ $(id -u) -ne 0 ]];
   then echo "To run docker-ce installer -- run as root...";
@@ -58,5 +61,20 @@ sudo apt-get update
 echo "Installing the latest version of Docker Engine and containerd..."
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-echo "Running hello-world image..."
+# Verify Successful Installation
 sudo docker run hello-world
+if [ $? -eq 0 ]
+then
+    sudo usermod -aG docker $USER
+    while true; do
+        read -p "Apply changes and restart?[y/n]:" yn
+        case $yn in
+            [Yy]* ) sudo reboot break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+else
+    echo "Something went wrong. Aborting..." >&2
+    exit 1
+fi
