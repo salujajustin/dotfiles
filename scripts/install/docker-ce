@@ -1,0 +1,62 @@
+#!/usr/bin/bash
+
+# Install Docker Engine on Ubuntu
+# OS requirements: 64-bit version of Ubuntu 19.10, 18.04, or 16.04
+# Docker Engine supported on x86_64 (or amd64), armhf, arm64, s390x, ppc641e
+# https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+
+# Must be run as root
+if [[ $(id -u) -ne 0 ]];
+  then echo "To run docker-ce installer -- run as root...";
+  exit 1;
+fi
+
+# Uninstall old versions
+echo "Removing older versions of Docker..."
+echo "Previous images, containers, volumes, and networks, will be preserved."
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Setting up the repository
+echo "Updating apt package index..."
+sudo apt-get update
+
+echo "Installing package dependencies..."
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+echo "Adding Docker's official GPG key..."
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+echo "Verify that the above key has the fingerprint:"
+echo "9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88"
+
+while true; do
+    read -p "Do the keys match[y/n]:" yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Something went wrong... Please consult the attached website"; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+echo "Setting up the stable repository..."
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+# Installing the Docker Engine
+echo "Updating apt package index..."
+sudo apt-get update
+
+echo "Installing the latest version of Docker Engine and containerd..."
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+echo "Running hello-world image..."
+sudo docker run hello-world
