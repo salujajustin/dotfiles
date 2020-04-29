@@ -38,8 +38,11 @@ if exists('*minpac#init')
     call minpac#add('KeitaNakamura/tex-conceal.vim')  " latex text concealer
     call minpac#add('907th/vim-auto-save')  " automatically save changes to disk  
     " Note-taking support
-    call minpac#add('junegunn/goyo.vim') " distraction free writing
+    call minpac#add('junegunn/goyo.vim') " centering text and other distraction free writing
     call minpac#add('junegunn/limelight.vim') " focus opacity on current text
+    call minpac#add('godlygeek/tabular') " vim script for text filtering and alignment 
+    call minpac#add('plasticboy/vim-markdown') " markdown syntax for vim
+    call minpac#add('iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }) " md preview 
     " Code support 
     call minpac#add('jiangmiao/auto-pairs')  " insert or delete brackets, parens, quotes in pair 
     " call minpac#add('neoclide/coc.nvim', {'branch': 'release'})  " intellisense engine  
@@ -108,10 +111,12 @@ endif
 "   tex-conceal settings
 set conceallevel=1
 let g:tex_conceal='abdmg'
-"   spell checking 
+" .............................................................................
+" /spell 
+" .............................................................................
 setlocal spell
 set spelllang=en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 "   auto-save options 
 let g:auto_save_silent = 1  " do not display auto-save notification
 nnoremap <localleader>w :AutoSaveToggle<CR>
@@ -133,15 +138,48 @@ set ts=4 sw=4 et
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+" .............................................................................
+" plasticboy/vim-markdown 
+" .............................................................................
+autocmd FileType markdown normal zR
+let g:vim_markdown_math = 1
+
+" .............................................................................
+" iamcco/markdown-preview.nvim
+" .............................................................................
+" let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='~/.config/css/github-markdown.css'
+
+
 " Insert Mode key mappings
 " -> exit insert mode
 inoremap jk <Esc>   
 " -> jump out of {}[]() etc.
 inoremap <leader>l <ESC>la
+" -> go to just before the first non-blank text of the line
+inoremap II <Esc>I
+" -> go to the end of the line 
+inoremap AA <Esc>A
+" -> start editing on a new line above the current line 
+inoremap OO <Esc>o
+" -> change what is on the right of the cursor 
+inoremap CC <Esc>C
+" -> change the whole line 
+" inoremap SS <Esc>S
+" -> delete the current line (end in normal mode) 
+inoremap DD <Esc>dd
+" -> undo
+inoremap UU <Esc>u
+" -> correct misspelled word
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 
 " Normal Mode key mappings
-"   replace all words aliased to S, with confirmation
-nnoremap S  :%s//gc<Left><Left><Left>  
+"   replace all words with confirmation
+nnoremap S  :%s//gc<Left><Left><Left>
+"   remove trailing white space 
+nnoremap <leader><leader>  :%s/\s\+$//e
+
 
 " Cut & Copy visual lines to system clipboard
 " echo has('clipboard') ==> if 0 install vim-gtk3
@@ -149,8 +187,16 @@ if (OS == "Darwin")
     vmap '' :w !pbcopy<CR><CR>
 else 
     set clipboard=unnamedplus  " ctrl-c & ctrl-v clipboard
-    cnoremap <C-v> <C-r>+/  
+    cnoremap <C-v> <C-r>+/
 endif
+
+" Running Python scripts
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+" :h job_start() To make command async
+autocmd FileType python map <buffer> <F10> :w<CR>:exec "!python "shellescape(@%, 1)" > /proc/29924/fd/1"<CR><CR>
+autocmd FileType python imap <buffer> <F10> :w<CR>:exec "!python "shellescape(@%, 1)" > /proc/29924/fd/1"<CR><CR>
 
 " vim hardcodes background color erase even if the terminfo file does
 " not contain bce (not to mention that libvte based terminals
