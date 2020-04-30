@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+
+# Import npm packages 
+source packages/npm
+
+# Node and npm installation  
+if test ! $(which npm); then
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+    sudo apt install nodejs
+else
+    echo "Node.js and npm already installed!"
+fi
+
+# Package installation
+echo "Installing packages..."
+sudo npm install -g ${PACKAGES[@]}
