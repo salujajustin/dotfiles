@@ -8,7 +8,15 @@ alt + n
 
 # program launcher
 alt + @space
-	rofi -show drun
+	search
+
+# find system objects
+alt + {_,shift + }@space 
+	rofi-bangs
+
+# broot search
+alt + y
+	kitty -e ls 
 
 # make sxhkd reload its configuration files:
 alt + Escape

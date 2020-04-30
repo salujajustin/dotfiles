@@ -1,5 +1,5 @@
 configuration {
-modi: "window,drun,run,ssh";
+modi: "window,drun,run";
 width: 900;
 lines: 15;
 columns: 1;
@@ -17,6 +17,7 @@ terminal: "kitty";
 /*	run-command: "{cmd}";*/
 /*	run-list-command: "";*/
 /*	run-shell-command: "{terminal} -e {cmd}";*/
+    /* run-shell-command: '{terminal} -e \\"{cmd}; read -n 1 -s"' */
 /*	window-command: "xkill -id {window}";*/
 /*	window-match-fields: "all";*/
 /*	drun-icon-theme: ;*/
@@ -52,7 +53,7 @@ matching: "fuzzy";
 /*	show-match: true;*/
 /* theme: "/usr/share/rofi/themes/Arc-Dark.rasi"; */
 /* theme: "~/.config/rofi/themes/saluja.rasi"; */
-theme: "~/.cache/wal/colors-rofi-dark.rasi";
+theme: "~/.config/rofi/themes/gruvbox-dark.rasi";
 /*	color-normal: "#510231, #FEE8DA, #510231, #FF974E, #510231";
   	color-urgent: "#510231, #FA6E43, #510231, #FA6E43, #FEE8DA";
   	color-active: "#510231, #FEE8DA, #510231, #FF974E, #510231";
