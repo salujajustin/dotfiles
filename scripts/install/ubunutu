@@ -1,0 +1,71 @@
+#!/usr/bin/bash
+
+# Must be run as root
+if [[ $(id -u) -ne 0 ]]; 
+  then echo "To run Ubuntu bootstrapper, APT-GETs all the things -- run as root...";
+  exit 1; 
+fi
+
+# Import apt packages 
+source packages/apt 
+
+# Cargo installation  
+if test ! $(which apt); then
+    curl https://sh.rustup.rs -sSf | sh
+else
+    echo "Cargo is already installed!"
+fi
+
+
+echo "Installing Fonts..."
+sudo apt install ${FONTS[@]}
+
+echo "Installing Python development tools..."
+sudo apt install ${PYTHON[@]}
+sudo pip install pipenv 
+
+# Check if the using VirtualBox 
+# cat /sys/class/dmi/id/product_name
+apt install build-essential dkms linux-headers-$(uname -r)
+echo "Please navigate to the Virtual Machine menu bar."
+echo "Click on Devices ==> Insert Guest Additions CD, and run the installer."
+# apt install open-vm-tools-desktop
+
+# Install the Brave Browser
+# Install inkscape-trunk until 1.0 is release
+
+# Docker setup - https://docs.docker.com/install/linux/docker-ce/ubuntu/
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update -y
+apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# adds the cuurent user who is sudo'ing to a docker group:
+groupadd docker
+usermod -aG docker $SUDO_USER
+service docker restart
+
+cat << EOF
+# now....
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+ssh-keygen -t rsa -b 4096 -C "you@example.com"
+
+eval "\$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+# now go to https://github.com/settings/keys
+
+# also check docker... you may need to login again for groups to sort out
+# try >> docker run hello-world
+
+# also, consider running:
+
+sudo apt autoremove
+
+EOF
+
