@@ -9,15 +9,16 @@
 %% Essential packages
 \usepackage[utf8]{inputenc}    % Standard input encoding
 \usepackage[T1]{fontenc}       % Standard font encoding 
-\usepackage{textcomp}          % Text companion fonts e.g. bullet, copyright
+\usepackage{textcomp}          % Text companion fonts e.g. Bullet, copyright
 \usepackage[english]{babel}    % Multilingual support i.e. [french]
-\usepackage{url}			   % URL typesetting vis \url
+\usepackage{url}			   % URL typesetting via \url
 \usepackage{enumitem}          % Control layout of itemize, enumerate, description
 
 %% Graphics, Tables and Colors
-\usepackage{graphicx} 		   % Acommodate need for inclusion of graphics 
+\usepackage{graphicx} 		   % Accommodate need for inclusion of graphics 
 \usepackage{float}  		   % Improved interface for floating objects 
 \usepackage{booktabs}          % Publication quality tables
+\usepackage{pdfrender}
 
 %% Appearance and Text
 \usepackage{parskip}           % Don't indent paragraphs, leave some space between them
@@ -26,11 +27,15 @@
 \usepackage{multicol}          % Allows switching between one and mulicolumn format on the same page 
 \usepackage{xcolor}            % Access to color tints, shades, tones, and mixes of arbitrary colors
 
-%% Fonts
+%% Fonts: Uncomment to use
 % \usepackage{cmbright}          % Computer Modern Bright fonts
+
+%% Code 
+\usepackage{pythonhighlight}   % Python syntax highlighting
 
 %% Math
 \usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{pifont}            % Additional symbols
 \usepackage{mathrsfs}		   % A calligraphic font for fancy capital letters i.e. \mathscr{ABC}
 \usepackage{cancel}            % Place lines through math formulae
 \usepackage{bm}                % Bold math
@@ -54,8 +59,8 @@
 \let\impliedby\Leftarrow
 \let\iff\Leftrightarrow
 % Replace variant definitions of phi and epsilon 
-\let\epsilon\varepsilon
-\let\phi\varphi
+% \let\epsilon\varepsilon
+% \let\phi\varphi
 
 %% Utilities
 % Command for short corrections 
@@ -82,45 +87,17 @@
 	\import{./figures/}{#1.pdf_tex}
 }
 
-
-
-
-
-
-
 %% Environments
 \makeatother  % 
 % For box around Definition, Theorem, \ldots
 \usepackage{mdframed}
-\mdfsetup{skipabove=1em,skipbelow=0em}
+\mdfsetup{skipabove=1.0em,skipbelow=0.0em}
 \theoremstyle{definition}
-\newmdtheoremenv[nobreak=true]{definitie}{Definitie}
-\newmdtheoremenv[nobreak=true]{eigenschap}{Eigenschap}
-\newmdtheoremenv[nobreak=true]{gevolg}{Gevolg}
-\newmdtheoremenv[nobreak=true]{lemma}{Lemma}
-\newmdtheoremenv[nobreak=true]{propositie}{Propositie}
-\newmdtheoremenv[nobreak=true]{stelling}{Stelling}
-\newmdtheoremenv[nobreak=true]{wet}{Wet}
-\newmdtheoremenv[nobreak=true]{postulaat}{Postulaat}
-\newmdtheoremenv{conclusie}{Conclusie}
-\newmdtheoremenv{toemaatje}{Toemaatje}
-\newmdtheoremenv{vermoeden}{Vermoeden}
-\newtheorem*{herhaling}{Herhaling}
-\newtheorem*{intermezzo}{Intermezzo}
-\newtheorem*{notatie}{Notatie}
-\newtheorem*{observatie}{Observatie}
-\newtheorem*{oef}{Oefening}
-\newtheorem*{opmerking}{Opmerking}
-\newtheorem*{praktisch}{Praktisch}
-\newtheorem*{probleem}{Probleem}
-\newtheorem*{terminologie}{Terminologie}
-\newtheorem*{toepassing}{Toepassing}
-\newtheorem*{uovt}{UOVT}
-\newtheorem*{vb}{Voorbeeld}
-\newtheorem*{vraag}{Vraag}
-
 \newmdtheoremenv[nobreak=true]{definition}{Definition}
-\newtheorem*{eg}{Example}
+\newmdtheoremenv[nobreak=true]{prop}{Proposition}
+\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
+\newmdtheoremenv[nobreak=true]{corollary}{Corollary}
+\newtheorem*{example}{Example}
 \newtheorem*{notation}{Notation}
 \newtheorem*{previouslyseen}{As previously seen}
 \newtheorem*{remark}{Remark}
@@ -129,9 +106,10 @@
 \newtheorem*{observe}{Observe}
 \newtheorem*{property}{Property}
 \newtheorem*{intuition}{Intuition}
-\newmdtheoremenv[nobreak=true]{prop}{Proposition}
-\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
-\newmdtheoremenv[nobreak=true]{corollary}{Corollary}
+
+
+
+
 
 % End example and intermezzo environments with a small diamond (just like proof
 % environments end with a small square)
@@ -141,11 +119,21 @@
 % \AtEndEnvironment{opmerking}{\null\hfill$\diamond$}%
 
 % Fix some spacing
-% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
+% http://tex.stack exchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-asthma
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=\parskip \thm@postskip=0pt
 }
+
+% Green check mark
+\newcommand*{\greencheck}{%
+  \textpdfrender{
+    TextRenderingMode=FillStroke,
+    LineWidth=.5pt, % half of the line width is outside the normal glyph
+}{{\color{green}\checkmark}}%
+}
+% Red X
+\newcommand{\redx}{{\color{red}\ding{55}}}
 
 
 % Exercise 
@@ -209,12 +197,12 @@
 % My name for when I print my lecture notes to use for an open book exam.
 % \fancyhead[LE,RO]{Gilles Castel}
 
-\fancyhead[RO,LE]{\@lecture} % Right odd,  Left even
-\fancyhead[RE,LO]{}          % Right even, Left odd
+% \fancyhead[RO,LE]{\@lecture} % Right odd,  Left even
+% \fancyhead[RE,LO]{}          % Right even, Left odd
 
-\fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
-\fancyfoot[RE,LO]{}          % Right even, Left odd
-\fancyfoot[C]{\leftmark}     % Center
+% \fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
+% \fancyfoot[RE,LO]{}          % Right even, Left odd
+% \fancyfoot[C]{\leftmark}     % Center
 
 \makeatother
 
@@ -228,29 +216,29 @@
 % Make boxes breakable
 \tcbuselibrary{breakable}
 
-% Verbetering is correction in Dutch
+% Correction 
 % Usage: 
-% \begin{verbetering}
+% \begin{correction}
 %     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 %     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
 %     vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
 %     no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% \end{verbetering}
-\newenvironment{verbetering}{\begin{tcolorbox}[
+% \end{correction}
+\newenvironment{correction}{\begin{tcolorbox}[
     arc=0mm,
     colback=white,
     colframe=green!60!black,
-    title=Opmerking,
+    title=Solution,
     fonttitle=\sffamily,
     breakable
 ]}{\end{tcolorbox}}
 
 % Noot is note in Dutch. Same as 'verbetering' but color of box is different
-\newenvironment{noot}[1]{\begin{tcolorbox}[
+\newenvironment{noot}{\begin{tcolorbox}[
     arc=0mm,
     colback=white,
     colframe=white!60!black,
-    title=#1,
+    title=Output,
     fonttitle=\sffamily,
     breakable
 ]}{\end{tcolorbox}}

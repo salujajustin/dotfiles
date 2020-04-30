@@ -23,7 +23,6 @@ snippet template "Basic template" b
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
 \usepackage{amsmath, amssymb}
 
 
@@ -394,20 +393,12 @@ snippet R0+ "R0+" iA
 endsnippet
 
 snippet plot "Plot" w
-\begin{figure}[$1]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-			xmin= ${2:-10}, xmax= ${3:10},
-			ymin= ${4:-10}, ymax = ${5:10},
-			axis lines = middle,
-		]
-			\addplot[domain=$2:$3, samples=${6:100}]{$7};
-		\end{axis}
-	\end{tikzpicture}
-	\caption{$8}
-	\label{${9:$8}}
-\end{figure}
+\begin{tikzpicture}
+	\draw[->] (-3,0) -- (4.2,0) node[right] {$x$};
+	\draw[->] (0,-3) -- (0,4.2) node[above] {$y$};
+	\draw[scale=0.5,domain=-3:3,smooth,variable=\x,blue] plot ({\x},{\x*\x});
+	\draw[scale=0.5,domain=-3:3,smooth,variable=\y,red]  plot ({\y*\y},{\y});
+\end{tikzpicture}
 endsnippet
 
 snippet nn "Tikz node" w
