@@ -38,6 +38,12 @@ shortcut = "e"
 execution = "$EDITOR {file}"
 
 [[verbs]]
+invocation = "open_pdf"
+key = "ctrl-z"
+shortcut = "z"
+execution = "/usr/bin/zathura {file}"
+
+[[verbs]]
 key = "ctrl-c"
 execution = ":quit"
 

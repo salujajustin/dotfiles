@@ -1,4 +1,16 @@
-#!/bin/sh
-# Install Cargo - the Rust package manager
+#!/usr/bin/bash
 
-curl https://sh.rustup.rs -sSf | sh
+
+# Import cargo packages 
+source packages/cargo 
+
+# Cargo installation  
+if test ! $(which cargo); then
+    curl https://sh.rustup.rs -sSf | sh
+else
+    echo "Cargo is already installed!"
+fi
+
+# Package installation
+echo "Installing packages..."
+cargo install ${PACKAGES[@]}

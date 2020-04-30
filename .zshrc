@@ -36,12 +36,15 @@ ZSH_THEME="common"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.cargo/env
+source /home/justin/.config/broot/launcher/bash/br
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 export EDITOR='vim'
+export BROWSER='firefox'
 
 # For a full list of active aliases, run `alias`.
 alias vimrc="vim ~/.vimrc"
@@ -57,3 +60,5 @@ alias d="kitty +kitten diff"
 
 # Import colorscheme from 'wal' asynchronously
 (cat ~/.cache/wal/sequences &)
+
+source /home/justin/.config/broot/launcher/bash/br
