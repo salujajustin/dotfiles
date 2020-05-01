@@ -1,5 +1,5 @@
 #!/bin/sh
 
-mkdir -p ~/.vim/pack/minpac/opt
-mkdir -p ~/.vim/tmp
+mkdir -p $HOME/.vim/pack/minpac/opt
+mkdir -p $HOME/.vim/tmp
 git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac

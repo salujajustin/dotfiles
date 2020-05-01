@@ -71,7 +71,10 @@ set number relativenumber
 set background=dark
 syntax enable 
 syntax on 
-colorscheme deus
+
+if filereadable(expand("$HOME/.vim/pack/minpac/start/vim-deus/colors/deus.vim"))
+    colors deus
+endif
 
 " Tab remap to 4 spaces 
 filetype plugin indent on
