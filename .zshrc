@@ -34,10 +34,7 @@ ZSH_THEME="common"
 
 # Which plugins would you like to load?
 plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
-source $HOME/.cargo/env
-source /home/justin/.config/broot/launcher/bash/br
 
 # User configuration
 
@@ -59,6 +56,5 @@ alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 
 # Import colorscheme from 'wal' asynchronously
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 
-source /home/justin/.config/broot/launcher/bash/br
