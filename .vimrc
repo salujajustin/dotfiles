@@ -27,6 +27,8 @@ if exists('*minpac#init')
     call minpac#add('machakann/vim-sandwich')  " delete, change, add surroundings: ()[]{}<>...
     call minpac#add('scrooloose/nerdcommenter')  " commenting code
     call minpac#add('EinfachToll/DidYouMean')  " stupidity checker
+    " Navigation
+    call minpac#add('justinmk/vim-sneak') " jump to any location specified by two characters
     " Colorschemes  
     call minpac#add('ajmwagar/vim-deus')  " :colorscheme deus
     call minpac#add('cocopon/iceberg.vim')  " :colorscheme iceberg
@@ -153,10 +155,20 @@ let g:vim_markdown_math = 1
 " let g:mkdp_refresh_slow=1
 let g:mkdp_markdown_css='~/.config/css/github-markdown.css'
 
+" .............................................................................
+" /sneak
+" .............................................................................
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S 
 
+
+
+" .............................................................................
 " Insert Mode key mappings
+" .............................................................................
+
 " -> exit insert mode
-inoremap jk <Esc>   
+inoremap jk <left><left><Esc>   
 " -> jump out of {}[]() etc.
 inoremap <leader>l <ESC>la
 " -> go to just before the first non-blank text of the line
@@ -177,9 +189,11 @@ inoremap UU <Esc>u
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 
+" .............................................................................
 " Normal Mode key mappings
+" .............................................................................
 "   replace all words with confirmation
-nnoremap S  :%s//gc<Left><Left><Left>
+nnoremap FR :%s//gc<Left><Left><Left>
 "   remove trailing white space 
 nnoremap <leader><leader>  :%s/\s\+$//e
 
