@@ -7,140 +7,138 @@
 # Administration Utilities
 # Utilities to administer system resources, manage user accounts, etc.
 ADMIN=(
-apt-transport-https
+"apt-transport-https"
 )
 
 # Development
 # Development utilities, compilers, development environments, libraries, etc.
 DEVEL=(
-build-essential
-cmake
-gdb
+"build-essential"
+"cmake"
 )
 
 # Documentation
 # FAQs, HOWTOs and other documents trying to explain everything related to Debian.
 DOC=(
-tldr
+"tldr"
 )
 
 # Editors
 # Software to edit files. Programming environments.
 EDITORS=(
-vim
-vim-gtk3
+"vim"
+"vim-gtk3"
 )
 
 # Fonts
 # Font packages.
 FONTS=(
-fonts-font-awesome
-fonts-hack-ttf
+"fonts-font-awesome"
+"fonts-hack-ttf"
 )
 
 # Graphics
 # Editors, viewers, converters... Everything to become an artist.
 GRAPHICS=(
-imagemagick
-sxiv
+"imagemagick"
+"sxiv"
 )
 
 # Miscellaneous
 # Miscellaneous utilities that didn't fit well anywhere else.
 MISC=(
-cmatrix
-sqlite3
+"cmatrix"
+"sqlite3"
 )
 
 # Network
 # Daemons and clients to connect your system to the world.
 NET=(
-iperf
-net-tools
-ssh
+"iperf"
+"net-tools"
+"ssh"
 )
 
 # Python
 # Everything about Python, as interpreted, interactive object oriented language.
 PYTHON=(
-python-dev
-python-pip
-python3-dev
-python3-pip
-python3-tk
+"python-dev"
+"python3-dev"
+"python3-pip"
+"python3-tk"
 )
 
 # Shells
 # Command shells. Friendly user interfaces for beginners.
 SHELLS=(
-zsh
+"zsh"
 )
 
 # SOUND
 # Utilities to deal with sound: mixers, players, recorders, CD players, etc.
 SOUND=(
-mpd
+"mpd"
 )
 
 # TeX
 # The famous typesetting software and related programs.
 TEX=(
-texlive-full
+"texlive-full"
 )
 
 # Text Processing
 # Utilities to format and print text documents.
 TEXT=(
-zathura
+"zathura"
 )
 
 # Utilities
 # Utilities for file/disk manipulation, backup and archive tools, system monitoring, input systems, etc.
 UTILS=(
-fontconfig
-gzip
-htop
-mlocate
-neofetch
-tig
-tree
-yadm
+"fontconfig"
+"gzip"
+"htop"
+"mlocate"
+"neofetch"
+"tig"
+"tree"
+"yadm"
 )
 
 # Version Control Systems
 # Version control systems and related utilities.
 VCS=(
-git
+"git"
 )
 
 # Video
 # Video viewers, editors, recording, streaming.
 VIDEO=(
-obs-studio
+"obs-studio"
 )
 
 # Web Software
 # Web servers, browsers, proxies, download tools etc.
 WEB=(
-curl
-firefox
-surfraw
-wget
+"curl"
+"firefox"
+"surfraw"
+"wget"
 )
 
 # X Window System software
 # X servers, libraries, fonts, window managers, terminal emulators and many related applications.
 X11=(
-kitty
-rofi
-x11-utils
-xautomation
-xcb
-xcb-proto
-xclip
-xdg-utils
-xdotool
-xorg-dev
-xsel
-xwallpaper
+"kitty"
+"rofi"
+"x11-utils"
+"xautomation"
+"xcb"
+"xcb-proto"
+"xclip"
+"xdg-utils"
+"xdotool"
+"xorg-dev"
+"xsel"
+"xwallpaper"
 )
