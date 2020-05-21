@@ -8,7 +8,9 @@ alt + n
 
 # program launcher
 alt + @space
-	search
+    rofi -show combi -switchers combi -combi-modi window,run,ssh \
+    -terminal kitty \
+	# search # make sure symlink active 
 
 # find system objects
 alt + {_,shift + }@space 
