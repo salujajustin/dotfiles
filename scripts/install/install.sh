@@ -39,7 +39,7 @@ installgroup() { \
 xinitrc() { \
     FILE=/home/justin/.xinitrc
     if [[ ! -f "$FILE" ]]; 
-        then echo "exec bspwm" > $FILE;
+        then echo ".config/xinitrc" > $FILE;
     fi 
 }
 
@@ -130,10 +130,10 @@ checkroot
 # askinstall "${X11[@]}"
 
 # Bspwm dependencies install
-# askinstall "${BSPWM[@]}"
+askinstall "${BSPWM[@]}"
 
 # xinit file 
-# xinitrc
+xinitrc
 
 # putgitrepo "$dotfilesrepo" "$HOME/code/clones/$name" "$repobranch" 
 # repobranch=master
