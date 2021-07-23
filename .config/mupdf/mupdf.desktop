@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=MuPDF
+GenericName=PDF file viewer
+Exec=mupdf-gl %f
+TryExec=mupdf-gl
+Icon=/home/justin/.config/mupdf/mupdf.ico
+Type=Application
+Terminal=false
+MimeType=application/pdf;application/x-pdf;application/x-cbz;application/oxps;application/vnd.ms-xpsdocument;image/jpeg;image/pjpeg;image/png;image/tiff;image/x-tiff
+Categories=Viewer;Graphics;
+Actions=View
+
+[Desktop Action View]
+Name=View with mupdf
+Exec=mupdf-gl %f
+
+# Ref: https://help.ubuntu.com/community/UnityLaunchersAndDesktopFiles#Using_a_text_editor
