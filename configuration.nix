@@ -39,13 +39,11 @@
     brews = [];
     casks = [
       "1password-cli"
-      "aerospace"
       "obsidian"
       "dbeaver-community"
       "ghostty"
       "maccy"
       "opensuperwhisper"
-      "claude-code"
     ];
   };
 }
